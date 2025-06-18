@@ -1,3 +1,7 @@
+first_operand = ''
+second_operand = ''
+operator = null
+
 function add(a, b) {
     return a + b;
 }
