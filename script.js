@@ -29,3 +29,32 @@ function operate(oper, a, b) {
         return divide(a, b);
     }
 }
+
+function populateDisplay(key, display) {
+    // Ensure the decimal point comes in once
+    if (key === '.') {
+        if (first_operand.includes('.')) return;
+    }
+
+    // Ensure maximum digits on screen are 13
+    if (first_operand.length === 13) return;
+
+    
+    if (display.textContent === '0') {
+        first_operand = key;
+    } else {
+        first_operand += key;
+    }
+    display.textContent = first_operand;
+}
+
+let digitButtons = document.querySelectorAll(".number");
+let display = document.querySelector(".output");
+
+digitButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        let buttonClicked = button.textContent;
+        populateDisplay(buttonClicked, display);
+        alert(`${buttonClicked} clicked`)
+    })
+})
