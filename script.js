@@ -84,5 +84,7 @@ operateButtons.forEach(button => {
 let equalButton = document.getElementById("equal");
 equalButton.addEventListener('click', () => {
     let answer = operate(operator, first_operand, second_operand);
-    display.textContent = answer;
+    if (first_operand !== '' && second_operand !== '') {
+        display.textContent = answer;
+    }
 });
