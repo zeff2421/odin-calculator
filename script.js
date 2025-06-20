@@ -36,8 +36,8 @@ function operate(oper, a, b) {
 function populateDisplay(key, display) {
     // Ensure the decimal point comes in once
     if (key === '.') {
-        if (first_operand.includes('.')) return;
-        if (second_operand.includes('.')) return;
+        if (operator == null && first_operand.includes('.')) return;
+        if (operator != null && second_operand.includes('.')) return;
     }
 
     // Ensure maximum digits on screen are 13
