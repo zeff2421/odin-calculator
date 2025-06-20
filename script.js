@@ -19,6 +19,9 @@ function divide(a, b) {
 }
 
 function operate(oper, a, b) {
+    a = Number(a);
+    b = Number(b);
+
     if (oper === '+') {
         return add(a, b);
     } else if (oper === '-') {
@@ -76,4 +79,10 @@ operateButtons.forEach(button => {
         operator = clicked;
 
     })
+});
+
+let equalButton = document.getElementById("equal");
+equalButton.addEventListener('click', () => {
+    let answer = operate(operator, first_operand, second_operand);
+    display.textContent = answer;
 });
