@@ -97,4 +97,23 @@ clear.addEventListener('click', () => {
     second_operand = '';
     operator =  null;
     display.textContent = 0;
-})
+});
+
+let del = document.getElementById("del");
+del.addEventListener('click', () => {
+    if (display.textContent !== '0' && answer === '') {
+        if (operator === null) {
+            first_operand = first_operand.slice(0, -1);
+        } else {
+            second_operand = second_operand.slice(0, -1);
+        }
+    } else if (display.textContent !== '0' && answer !== '') {
+        answer = answer.slice(0, -1);
+    }
+
+    display.textContent = display.textContent.slice(0, -1);
+
+    if (display.textContent === '') {
+        display.textContent = '0';
+    }
+});
