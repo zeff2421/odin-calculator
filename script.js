@@ -1,6 +1,8 @@
-first_operand = ''
-second_operand = ''
-operator = null
+let first_operand = '';
+let second_operand = '';
+let operator = null;
+let answer = '';
+
 
 function add(a, b) {
     return a + b;
@@ -83,7 +85,7 @@ operateButtons.forEach(button => {
 
 let equalButton = document.getElementById("equal");
 equalButton.addEventListener('click', () => {
-    let answer = operate(operator, first_operand, second_operand);
+    answer = operate(operator, first_operand, second_operand).toString();
     if (first_operand !== '' && second_operand !== '') {
         display.textContent = answer;
     }
