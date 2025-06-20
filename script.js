@@ -88,3 +88,11 @@ equalButton.addEventListener('click', () => {
         display.textContent = answer;
     }
 });
+
+let clear = document.getElementById("clear");
+clear.addEventListener('click', () => {
+    first_operand = '';
+    second_operand = '';
+    operator =  null;
+    display.textContent = 0;
+})
