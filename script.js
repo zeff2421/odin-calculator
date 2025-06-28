@@ -42,10 +42,10 @@ function populateDisplay(key, display) {
         if (operator != null && second_operand.includes('.')) return;
     }
 
-    // Ensure maximum digits on screen are 13
-    if (first_operand.length === 13 || second_operand.length === 13) return;
-
     if (operator === null) {
+        // Ensure maximum digits on screen are 13
+        if (first_operand.length === 13) return;
+
         if (display.textContent === '0') {
             first_operand = key;
         } else {
@@ -53,6 +53,9 @@ function populateDisplay(key, display) {
         }
         display.textContent = first_operand;
     } else {
+        // Ensure maximum digits on screen are 13
+        if (second_operand.length === 13) return;
+        
         if (display.textContent === '0') {
             second_operand = key;
         } else {
@@ -79,7 +82,6 @@ operateButtons.forEach(button => {
     button.addEventListener('click', () => {
         let clicked = button.value;
         operator = clicked;
-
     })
 });
 
@@ -87,7 +89,7 @@ let equalButton = document.getElementById("equal");
 equalButton.addEventListener('click', () => {
     answer = operate(operator, first_operand, second_operand).toString();
     if (answer.length > 13) {
-        answer = Number(answer).toExponential(2).toString();
+        answer = Number(answer).toExponential(5).toString();
     }
     if (first_operand !== '' && second_operand !== '') {
         display.textContent = answer;
