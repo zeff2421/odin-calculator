@@ -86,6 +86,9 @@ operateButtons.forEach(button => {
 let equalButton = document.getElementById("equal");
 equalButton.addEventListener('click', () => {
     answer = operate(operator, first_operand, second_operand).toString();
+    if (answer.length > 13) {
+        answer = Number(answer).toExponential(2).toString();
+    }
     if (first_operand !== '' && second_operand !== '') {
         display.textContent = answer;
     }
