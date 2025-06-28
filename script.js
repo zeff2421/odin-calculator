@@ -83,7 +83,10 @@ operateButtons.forEach(button => {
         let clicked = button.value;
         for (const op of operateButtons) {
             if (display.textContent.includes(op.textContent) && first_operand != '' && second_operand != '') {
-                first_operand = operate(operator, first_operand, second_operand).toString();
+                first_operand = operate(operator, first_operand, second_operand);
+                if (typeof(first_operand) === "number") {
+                    first_operand = first_operand.toString();
+                }
                 display.textContent = first_operand;
                 second_operand = '';
             }
@@ -95,13 +98,28 @@ operateButtons.forEach(button => {
 
 let equalButton = document.getElementById("equal");
 equalButton.addEventListener('click', () => {
-    answer = operate(operator, first_operand, second_operand).toString();
+    answer = operate(operator, first_operand, second_operand);
+    if (answer === undefined) {
+        display.textContent = '0';
+        first_operand = '';
+        second_operand = '';
+        operator = null;
+        answer = '';
+        return;
+    }
+    if (typeof(answer) === "number") {
+        answer = answer.toString();
+    }
     if (answer.length > 13) {
         answer = Number(answer).toExponential(2).toString();
     }
-    if (first_operand !== '' && second_operand !== '') {
-        display.textContent = answer;
-    }
+    display.textContent = answer;
+
+    // Update variables
+    first_operand = answer;
+    second_operand = '';
+    operator = '';
+    answer = '';
 });
 
 let clear = document.getElementById("clear");
