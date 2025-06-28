@@ -61,7 +61,7 @@ function populateDisplay(key, display) {
         } else {
             second_operand += key;
         }
-        display.textContent = second_operand;
+        display.textContent += key;
     }
 }
 
@@ -81,7 +81,15 @@ let operateButtons = document.querySelectorAll(".operator");
 operateButtons.forEach(button => {
     button.addEventListener('click', () => {
         let clicked = button.value;
+        for (const op of operateButtons) {
+            if (display.textContent.includes(op.textContent) && first_operand != '' && second_operand != '') {
+                first_operand = operate(operator, first_operand, second_operand).toString();
+                display.textContent = first_operand;
+                second_operand = '';
+            }
+        }
         operator = clicked;
+        display.textContent += button.textContent;
     })
 });
 
@@ -89,7 +97,7 @@ let equalButton = document.getElementById("equal");
 equalButton.addEventListener('click', () => {
     answer = operate(operator, first_operand, second_operand).toString();
     if (answer.length > 13) {
-        answer = Number(answer).toExponential(5).toString();
+        answer = Number(answer).toExponential(2).toString();
     }
     if (first_operand !== '' && second_operand !== '') {
         display.textContent = answer;
