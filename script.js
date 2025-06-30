@@ -46,7 +46,7 @@ function populateDisplay(key, display) {
         if (operator != null && second_operand.includes('.')) return;
     }
 
-    if (operator === null) {
+    if (operator === null || operator === '') {
         // Ensure maximum digits on screen are 13
         if (first_operand.length === 13) return;
 
@@ -154,7 +154,7 @@ clear.addEventListener('click', () => {
 let del = document.getElementById("del");
 del.addEventListener('click', () => {
     if (display.textContent !== '0' && answer === '') {
-        if (operator === null) {
+        if (operator === null || answer === '') {
             first_operand = first_operand.slice(0, -1);
         } else {
             second_operand = second_operand.slice(0, -1);
