@@ -96,6 +96,13 @@ operateButtons.forEach(button => {
             }
         }
         operator = clicked;
+        // Convert the button NodeList to an array
+        let opButtArrays = Array.from(operateButtons);
+        let lastCharOnScreen = display.textContent[display.textContent.length -1];
+
+        for (let i = 0; i < opButtArrays.length; i++) {
+            if (opButtArrays[i].value === lastCharOnScreen) return
+        }
         display.textContent += button.textContent;
     })
 });
