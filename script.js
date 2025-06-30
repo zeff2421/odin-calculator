@@ -95,20 +95,30 @@ operateButtons.forEach(button => {
                 second_operand = '';
             }
         }
-        operator = clicked;
+        
         // Convert the button NodeList to an array
         let opButtArrays = Array.from(operateButtons);
+        let operatorList = []
         let lastCharOnScreen = display.textContent[display.textContent.length -1];
 
         for (let i = 0; i < opButtArrays.length; i++) {
-            if (opButtArrays[i].value === lastCharOnScreen) return
+            operatorList.push(opButtArrays[i].textContent)
         }
-        display.textContent += button.textContent;
+
+        if (operatorList.includes(lastCharOnScreen) && first_operand !== '') {
+            operator = clicked;
+            display.textContent = display.textContent.slice(0, -1);
+            display.textContent += button.textContent;
+        } else if (!operatorList.includes(lastCharOnScreen) && first_operand !== '') {
+            operator = clicked;
+            display.textContent += button.textContent
+        }
     })
 });
 
 let equalButton = document.getElementById("equal");
 equalButton.addEventListener('click', () => {
+    if (operator === null || first_operand === '' || second_operand === '') return;
     answer = operate(operator, first_operand, second_operand);
     if (answer === undefined) {
         display.textContent = '0';
