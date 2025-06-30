@@ -52,6 +52,11 @@ button {
     color: green;
 }
 
+.command {
+    background-color: whitesmoke;
+    color: #2A2A2A;
+}
+
 .equal {
     background-color: green;
     width: 183px;
