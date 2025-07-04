@@ -153,8 +153,10 @@ clear.addEventListener('click', () => {
 
 let del = document.getElementById("del");
 del.addEventListener('click', () => {
+    let hasOperator = false;
+
     if (display.textContent !== '0' && answer === '') {
-        if (operator === null || answer === '') {
+        if (operator === null) {
             first_operand = first_operand.slice(0, -1);
         } else {
             second_operand = second_operand.slice(0, -1);
@@ -164,6 +166,17 @@ del.addEventListener('click', () => {
     }
 
     display.textContent = display.textContent.slice(0, -1);
+
+    // Checks if there is an operator in the display
+    for (const op of operateButtons) {
+        if (display.textContent.includes(op.textContent)) {
+            hasOperator = true;
+            break;
+        }
+    }
+    
+    if (!hasOperator)
+        operator = null;
 
     if (display.textContent === '') {
         display.textContent = '0';
